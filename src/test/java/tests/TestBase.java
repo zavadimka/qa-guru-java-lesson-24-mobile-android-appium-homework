@@ -1,8 +1,10 @@
 package tests;
 
 import com.codeborne.selenide.Configuration;
+import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.logevents.SelenideLogger;
 import drivers.BrowserstackDriver;
+import helpers.Attach;
 import io.qameta.allure.selenide.AllureSelenide;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
@@ -27,7 +29,13 @@ public class TestBase {
 
     @AfterEach
     void addAttachments() {
+        String sessionId = Selenide.sessionId().toString();
+        System.out.println(sessionId);
 
+//        Attach.screenshotAs("Last screenshot"); // todo fix
+        Attach.pageSource();
         closeWebDriver();
+
+        Attach.addVideo(sessionId);
     }
 }
