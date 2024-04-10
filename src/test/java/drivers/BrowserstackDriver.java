@@ -4,7 +4,6 @@ import com.codeborne.selenide.WebDriverProvider;
 import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.MutableCapabilities;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
 import javax.annotation.Nonnull;
@@ -18,8 +17,8 @@ public class BrowserstackDriver implements WebDriverProvider {
         MutableCapabilities caps = new MutableCapabilities();
 
         // Set your access credentials
-        caps.setCapability("browserstack.user", "qaguru_ti9G5S");
-        caps.setCapability("browserstack.key", "5yrxu4nFTKkRExUAhqxh");
+        caps.setCapability("browserstack.user", "dmitryzavada_YdJTjX");
+        caps.setCapability("browserstack.key", "4sgn9NqpQx9YMW9Ybhqq");
 
         // Set URL of the application under test
         caps.setCapability("app", "bs://c700ce60cf13ae8ed97705a55b8e022f13c5827c");
