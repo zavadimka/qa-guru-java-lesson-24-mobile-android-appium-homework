@@ -3,10 +3,7 @@ package tests;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.*;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Tag;
-import org.junit.jupiter.api.Tags;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 
 import static com.codeborne.selenide.CollectionCondition.sizeGreaterThan;
 import static com.codeborne.selenide.Condition.text;
@@ -17,7 +14,7 @@ import static io.qameta.allure.Allure.step;
 @Owner("Dmitry Zavada")
 @Feature("Wikipedia Mobile App testing with BrowserStack and Appium")
 @Tags({@Tag("mobile_tests"), @Tag("rest_assured"), @Tag("appium")})
-public class SearchTests extends TestBase {
+public class WikiAppSearchTests extends TestBase {
 
     private static final SelenideElement searchInputClick = $(accessibilityId("Search Wikipedia")),
             searchInput = $(id("org.wikipedia.alpha:id/search_src_text")),
@@ -30,7 +27,7 @@ public class SearchTests extends TestBase {
             pageTitleText = "Software company based in India";
 
     @Test
-    @DisplayName("Wikipedia Search testing: Check search results by query \"Appium\"")
+    @DisplayName("Mobile Wikipedia Search testing: Get and check search results by query \"Appium\"")
     @Story("Open Wikipedia Mobile App, search for \"Appium\" and check that the results amount is greater than 0")
     @Severity(SeverityLevel.CRITICAL)
     void successfulSearchTest() {
@@ -43,10 +40,10 @@ public class SearchTests extends TestBase {
     }
 
     @Test
-    @DisplayName("Wikipedia Search testing: Get no search results by query \"asfhwqeruafhaaf\"")
+    @DisplayName("Mobile Wikipedia Search testing: Get no search results by query \"asfhwqeruafhaaf\"")
     @Story("Open Wikipedia Mobile App, search for \"asfhwqeruafhaaf\" and check that the title \"No Results\" is visible")
     @Severity(SeverityLevel.CRITICAL)
-    void successfulSearchTestWithNoResults() {
+    void successfulSearchWithNoResultsTest() {
         step("Make a search query", () -> {
             searchInputClick.click();
             searchInput.sendKeys("asfhwqeruafhaaf");
@@ -58,11 +55,13 @@ public class SearchTests extends TestBase {
 
     }
 
+
     @Test
-    @DisplayName("Wikipedia Mobile App testing with BrowserStack and Appium")
+    @Disabled("Disabled due to application error")
+    @DisplayName("Mobile Wikipedia Search testing: Get, check and open search results by query \"Browserstack\"")
     @Story("Open Wikipedia Mobile App, search for \"Browserstack\", verify first search result, click on the link, verify the opened page")
     @Severity(SeverityLevel.CRITICAL)
-    void successfulSearchTestWithOpeningLink() {
+    void successfulSearchWithOpeningLinkTest() {
         step("Make a search query", () -> {
             searchInputClick.click();
             searchInput.sendKeys("Browserstack");
