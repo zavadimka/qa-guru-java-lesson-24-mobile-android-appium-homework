@@ -5,9 +5,7 @@ import org.aeonbits.owner.Config;
 @Config.LoadPolicy(Config.LoadType.MERGE)
 @Config.Sources({
         "system:properties",
-        "classpath:config/user_data.properties",
-        "classpath:config/device.properties",
-        "classpath:config/project.properties"
+        "classpath:config/browserstack.properties"
 })
 public interface BrowserstackDriverConfig extends Config {
 
@@ -17,7 +15,7 @@ public interface BrowserstackDriverConfig extends Config {
     @Key("browserstack.key")
     String getAccessKey();
 
-    @Key("browserstack.app")
+    @Key("browserstack.app_url")
     String getAppUrl();
 
     @Key("browserstack.device")
@@ -26,13 +24,13 @@ public interface BrowserstackDriverConfig extends Config {
     @Key("browserstack.os_version")
     String getDeviceOsVersion();
 
-    @Key("browserstack.project")
+    @Key("browserstack.project_name")
     String getProjectName();
 
-    @Key("browserstack.build")
+    @Key("browserstack.build_name")
     String getBuildName();
 
-    @Key("browserstack.name")
+    @Key("browserstack.test_name")
     String getTestName();
 
     @Key("browserstack.remote_url")

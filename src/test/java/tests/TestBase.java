@@ -9,10 +9,24 @@ import io.qameta.allure.selenide.AllureSelenide;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
+import screens.CreateAnAccountScreen;
+import screens.HomeScreen;
+import screens.modules.getstarted.FirstGettingStartScreen;
+import screens.modules.getstarted.FourthGettingStartScreen;
+import screens.modules.getstarted.SecondGettingStartScreen;
+import screens.modules.getstarted.ThirdGettingStartScreen;
 
 import static com.codeborne.selenide.Selenide.*;
 
 public class TestBase {
+
+    FirstGettingStartScreen firstGettingStartScreen = new FirstGettingStartScreen();
+    SecondGettingStartScreen secondGettingStartScreen = new SecondGettingStartScreen();
+    ThirdGettingStartScreen thirdGettingStartScreen = new ThirdGettingStartScreen();
+    FourthGettingStartScreen fourthGettingStartScreen = new FourthGettingStartScreen();
+    HomeScreen homeScreen = new HomeScreen();
+    CreateAnAccountScreen createAnAccountScreen = new CreateAnAccountScreen();
+
     @BeforeAll
     static void beforeAll() {
         Configuration.browser = BrowserstackDriver.class.getName();
