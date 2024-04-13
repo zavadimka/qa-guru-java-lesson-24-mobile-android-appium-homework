@@ -4,6 +4,7 @@ import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.logevents.SelenideLogger;
 import drivers.BrowserstackDriver;
+import drivers.DeviceDriver;
 import helpers.Attach;
 import io.qameta.allure.selenide.AllureSelenide;
 import org.junit.jupiter.api.AfterEach;
@@ -27,11 +28,21 @@ public class TestBase {
     HomeScreen homeScreen = new HomeScreen();
     CreateAnAccountScreen createAnAccountScreen = new CreateAnAccountScreen();
 
+    static String driver;
+
     @BeforeAll
     static void beforeAll() {
-        Configuration.browser = BrowserstackDriver.class.getName();
+        driver = getWebDriverDestination();
+
+        switch (driver) {
+            case "browserstack" -> Configuration.browser = BrowserstackDriver.class.getName();
+            case "virtual_device" -> Configuration.browser = DeviceDriver.class.getName();
+        }
+
         Configuration.browserSize = null;
-        Configuration.timeout = 10_000;
+        Configuration.timeout = 30_000;
+
+        printDeviceDriverInfo();
     }
 
     @BeforeEach
@@ -43,12 +54,26 @@ public class TestBase {
     @AfterEach
     void addAttachments() {
         String sessionId = Selenide.sessionId().toString();
-        System.out.println(sessionId);
 
-//        Attach.screenshotAs("Last screenshot"); // todo fix
         Attach.pageSource();
-        closeWebDriver();
+        if (driver.equals("browserstack")){
+//            Attach.screenshotAs("Last screenshot"); // todo fix
+            closeWebDriver();
+            Attach.addVideo(sessionId);
+        } else {
+            Attach.screenshotAs("screenshot");
+            closeWebDriver();
+        }
+    }
 
-        Attach.addVideo(sessionId);
+    private static String getWebDriverDestination() {
+        String driver = System.getProperty("driver", "browserstack");
+        System.setProperty("driver", driver);
+
+        return driver;
+    }
+
+    public static void printDeviceDriverInfo() {
+        System.out.println("The test is run on " + driver);
     }
 }

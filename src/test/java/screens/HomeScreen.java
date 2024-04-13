@@ -1,7 +1,9 @@
 package screens;
 
 import com.codeborne.selenide.SelenideElement;
+import com.codeborne.selenide.WebDriverProvider;
 import io.qameta.allure.Step;
+import org.openqa.selenium.WebDriver;
 
 import static com.codeborne.selenide.Selenide.$;
 import static io.appium.java_client.AppiumBy.*;
@@ -17,17 +19,17 @@ public class HomeScreen {
 
 
     @Step("Check that the main toolbar Wordmark is visible")
-    public HomeScreen checkMainToolbarWordmarkVisibility() {
+    public HomeScreen checkMainToolbarWordmarkVisibility() throws InterruptedException {
+        Thread.sleep(3000);
         assertThat(mainToolbarWordmark.isDisplayed()).isTrue();
 
         return this;
     }
 
     @Step("Check that the Search Container is visible and contains text \"Search Wikipedia\"")
-    public HomeScreen checkSearchContainerVisibilityAndText() {
+    public void checkSearchContainerVisibilityAndText() {
         assertThat(searchContainer.isDisplayed()).isTrue();
         assertThat(searchInputTitle.getText()).isEqualTo(searchInputTitleText);
 
-        return this;
     }
 }

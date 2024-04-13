@@ -15,19 +15,19 @@ public class WikiAppGettingStartedTests extends TestBase {
     @Story("Mobile Wikipedia Getting Started Testing: Go through all four Screens and make checks on each Screen")
     @Severity(SeverityLevel.NORMAL)
     void successfulGetStartedTest() {
-        step("First Getting Started screen testing then open Second screen", () -> {
+        step("### First Getting Started screen testing then open Second screen", () -> {
             firstGettingStartScreen.secondaryHeaderShouldContainText()
                     .addDeutsch()
                     .deutschShouldBeVisibleOnTheFirstScreen()
                     .nextScreen();
         });
 
-        step("Second Getting Started screen testing then open Third screen", () -> {
+        step("### Second Getting Started screen testing then open Third screen", () -> {
             secondGettingStartScreen.primaryHeaderShouldContainText()
                     .nextScreen();
         });
 
-        step("Third Getting Started screen testing then open Forth screen", () -> { // todo open Create an account screen (Join Wikipedia link)
+        step("### Third Getting Started screen testing then open Forth screen", () -> { // todo open Create an account screen (Join Wikipedia link)
             thirdGettingStartScreen.primaryHeaderShouldContainText()
                     .nextScreen();
 //                    .openCreateAnAccountScreen();
@@ -45,12 +45,12 @@ public class WikiAppGettingStartedTests extends TestBase {
 //                    .nextScreen();
 //        });
 
-        step("Fourth Getting Started screen testing then open Home Screen", () -> {
+        step("### Fourth Getting Started screen testing then open Home Screen", () -> {
             fourthGettingStartScreen.primaryHeaderShouldContainText()
                     .getStarted();
         });
 
-        step("Check Home screen opening after the end of the Getting Started", () -> {
+        step("### Check Home screen opening after the end of the Getting Started", () -> {
             homeScreen.checkMainToolbarWordmarkVisibility()
                     .checkSearchContainerVisibilityAndText();
         });
@@ -61,7 +61,7 @@ public class WikiAppGettingStartedTests extends TestBase {
     @Story("Click on the Skip button on the First Getting Started screen and make sure we are on the App Home screen")
     @Severity(SeverityLevel.NORMAL)
     void skipGettingStartedTest() {
-        step("Click on the Skip button on the First Getting Started screen and make Home screen checks", () -> {
+        step("### Click on the Skip button on the First Getting Started screen and make Home screen checks", () -> {
             firstGettingStartScreen.skipGettingStarted();
             homeScreen.checkMainToolbarWordmarkVisibility()
                     .checkSearchContainerVisibilityAndText();
