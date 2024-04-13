@@ -2,7 +2,6 @@ package tests;
 
 import io.qameta.allure.*;
 import org.junit.jupiter.api.*;
-import screens.modules.getstarted.FirstGettingStartScreen;
 
 import static io.qameta.allure.Allure.step;
 
@@ -11,15 +10,13 @@ import static io.qameta.allure.Allure.step;
 @Tags({@Tag("mobile_tests"), @Tag("rest_assured"), @Tag("appium")})
 public class WikiAppGettingStartedTests extends TestBase {
 
-    FirstGettingStartScreen firstScreen = new FirstGettingStartScreen();
-
     @Test
     @DisplayName("Mobile Wikipedia Getting Started testing: Successful Get Started test")
     @Story("Mobile Wikipedia Getting Started Testing: Go through all four Screens and make checks on each Screen")
     @Severity(SeverityLevel.NORMAL)
     void successfulGetStartedTest() {
         step("First Getting Started screen testing then open Second screen", () -> {
-            firstScreen.secondaryHeaderShouldContainText()
+            firstGettingStartScreen.secondaryHeaderShouldContainText()
                     .addDeutsch()
                     .deutschShouldBeVisibleOnTheFirstScreen()
                     .nextScreen();
@@ -61,11 +58,11 @@ public class WikiAppGettingStartedTests extends TestBase {
 
     @Test
     @DisplayName("Mobile Wikipedia Getting Started testing: Skip Getting Started test")
-    @Story("Click on the Skip button on the first Getting Started screen and make sure we are on the App Home screen")
+    @Story("Click on the Skip button on the First Getting Started screen and make sure we are on the App Home screen")
     @Severity(SeverityLevel.NORMAL)
     void skipGettingStartedTest() {
-        step("Click on the Skip button on the first Getting Started screen and make Home screen checks", () -> {
-            firstScreen.skipGettingStarted();
+        step("Click on the Skip button on the First Getting Started screen and make Home screen checks", () -> {
+            firstGettingStartScreen.skipGettingStarted();
             homeScreen.checkMainToolbarWordmarkVisibility()
                     .checkSearchContainerVisibilityAndText();
         });
