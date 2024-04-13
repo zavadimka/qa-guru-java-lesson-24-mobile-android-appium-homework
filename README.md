@@ -66,16 +66,3 @@ gradle clean test -Ddriver=real_device
 ```
 gradle clean test -Ddriver=virtual_device
 ```
-
-
-Параметры web-драйвера могут переопределены с помощью properties и параметров в `Jenkins`:
-```
-clean test
--Ddriver=${DRIVER}
-```
-Параметры сборки:
-
-    DRIVER:
-    - browserstack (default) - тест запускается удаленно на физическом устройстве с помощью BrowserStack
-    - real_device - тест запускается локально на физическом устройстве  
-    - virtual_device - тест запускается локально на эмулируемом виртуальном устройстве 
