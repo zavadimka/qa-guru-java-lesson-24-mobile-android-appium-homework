@@ -5,7 +5,7 @@ import org.aeonbits.owner.Config;
 @Config.LoadPolicy(Config.LoadType.MERGE)
 @Config.Sources({
         "system:properties",
-        "classpath:config/virtual_device.properties"
+        "classpath:config/${driver}.properties"
 })
 public interface LocalDriverConfig extends Config {
 

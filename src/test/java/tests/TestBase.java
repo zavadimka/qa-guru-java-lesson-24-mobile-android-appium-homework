@@ -37,6 +37,7 @@ public class TestBase {
         switch (driver) {
             case "browserstack" -> Configuration.browser = BrowserstackDriver.class.getName();
             case "virtual_device" -> Configuration.browser = LocalDriver.class.getName();
+            case "real_device" -> Configuration.browser = LocalDriver.class.getName();
         }
 
         Configuration.browserSize = null;
