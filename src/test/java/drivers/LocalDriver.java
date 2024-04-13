@@ -1,7 +1,7 @@
 package drivers;
 
 import com.codeborne.selenide.WebDriverProvider;
-import config.DeviceDriverConfig;
+import config.LocalDriverConfig;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.options.UiAutomator2Options;
 import org.aeonbits.owner.ConfigFactory;
@@ -20,10 +20,10 @@ import static io.appium.java_client.remote.AutomationName.ANDROID_UIAUTOMATOR2;
 import static io.appium.java_client.remote.MobilePlatform.ANDROID;
 import static org.apache.commons.io.FileUtils.copyInputStreamToFile;
 
-public class DeviceDriver implements WebDriverProvider {
+public class LocalDriver implements WebDriverProvider {
 
-    DeviceDriverConfig deviceDriverConfig = ConfigFactory
-            .create(DeviceDriverConfig.class, System.getProperties());
+    LocalDriverConfig localDriverConfig = ConfigFactory
+            .create(LocalDriverConfig.class, System.getProperties());
 
     @Nonnull
     @Override
@@ -31,12 +31,12 @@ public class DeviceDriver implements WebDriverProvider {
         UiAutomator2Options options = new UiAutomator2Options();
 
         options.setAutomationName(ANDROID_UIAUTOMATOR2)
-                .setDeviceName(deviceDriverConfig.getDeviceName())
+                .setDeviceName(localDriverConfig.getDeviceName())
                 .setPlatformName(ANDROID)
-                .setPlatformVersion(deviceDriverConfig.getDeviceOsVersion())
+                .setPlatformVersion(localDriverConfig.getDeviceOsVersion())
                 .setApp(getAppPath())
-                .setAppPackage(deviceDriverConfig.getAppPackage())
-                .setAppActivity(deviceDriverConfig.getAppActivity());
+                .setAppPackage(localDriverConfig.getAppPackage())
+                .setAppActivity(localDriverConfig.getAppActivity());
 
         return new AndroidDriver(getAppiumServerUrl(), options);
     }
@@ -50,8 +50,8 @@ public class DeviceDriver implements WebDriverProvider {
     }
 
     private String getAppPath() {
-        String appVersion = deviceDriverConfig.getAppVersion();
-        String appUrl = deviceDriverConfig.getAppUrl() + appVersion;
+        String appVersion = localDriverConfig.getAppVersion();
+        String appUrl = localDriverConfig.getAppUrl() + appVersion;
         String appPath = "src/test/resources/apps/" + appVersion;
 
         File app = new File(appPath);

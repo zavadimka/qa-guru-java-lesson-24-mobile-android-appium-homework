@@ -7,7 +7,7 @@ import org.aeonbits.owner.Config;
         "system:properties",
         "classpath:config/virtual_device.properties"
 })
-public interface DeviceDriverConfig extends Config {
+public interface LocalDriverConfig extends Config {
 
     @Key("device.name")
     String getDeviceName();

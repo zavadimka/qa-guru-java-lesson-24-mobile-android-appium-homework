@@ -4,7 +4,7 @@ import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.logevents.SelenideLogger;
 import drivers.BrowserstackDriver;
-import drivers.DeviceDriver;
+import drivers.LocalDriver;
 import helpers.Attach;
 import io.qameta.allure.selenide.AllureSelenide;
 import org.junit.jupiter.api.AfterEach;
@@ -36,7 +36,7 @@ public class TestBase {
 
         switch (driver) {
             case "browserstack" -> Configuration.browser = BrowserstackDriver.class.getName();
-            case "virtual_device" -> Configuration.browser = DeviceDriver.class.getName();
+            case "virtual_device" -> Configuration.browser = LocalDriver.class.getName();
         }
 
         Configuration.browserSize = null;
